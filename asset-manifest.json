@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/ticketing-system/static/js/main.fd7d0e4e.js",
+    "static/js/488.68814fb3.chunk.js": "/ticketing-system/static/js/488.68814fb3.chunk.js",
+    "index.html": "/ticketing-system/index.html",
+    "main.fd7d0e4e.js.map": "/ticketing-system/static/js/main.fd7d0e4e.js.map",
+    "488.68814fb3.chunk.js.map": "/ticketing-system/static/js/488.68814fb3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.fd7d0e4e.js"
+  ]
+}
