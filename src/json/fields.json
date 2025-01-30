@@ -1,0 +1,73 @@
+[
+  {
+    "fieldData": {
+      "label": "Apellido",
+      "name": "apellido",
+      "type": "text",
+      "placeholder": "Ingresa tu apellido",
+      "enabled": true
+    },
+    "component": "CustomInput"
+  },
+  {
+    "fieldData": {
+      "label": "Nombre",
+      "name": "nombre",
+      "type": "text",
+      "placeholder": "Ingresa tu nombre",
+      "enabled": true
+    },
+    "component": "CustomInput"
+  },
+  {
+    "fieldData": {
+      "label": "Selecciona un rol",
+      "name": "role",
+      "options": [
+        { "value": "", "label": "Seleccione una opción" },
+        { "value": "admin", "label": "Administrador" },
+        { "value": "user", "label": "Usuario" },
+        { "value": "guest", "label": "Invitado" }
+      ],
+      "enabled": true
+    },
+    "component": "CustomSelect"
+  },
+  {
+    "fieldData": {
+      "label": "Suscribirse al boletín",
+      "name": "subscribeNewsletter",
+      "value": true,
+      "enabled": true
+    },
+    "component": "CustomCheckbox"
+  },
+  {
+    "fieldData": {
+      "label": "Buscar usuario",
+      "name": "userSearch",
+      "placeholder": "Ingresa el nombre del usuario",
+      "enabled": true
+    },
+    "component": "CustomInputAutocomplete",
+    "onRequest": "searchUser"
+  },
+  {
+    "fieldData": {
+      "label": "Selecciona múltiples roles",
+      "name": "multipleRoles",
+      "enabled": true
+    },
+    "component": "CustomSelectMultiple",
+    "onRequest": "fetchRoles"
+  },
+  {
+    "fieldData": {
+      "label": "Selecciona una opción dinámica",
+      "name": "dynamicSelect",
+      "enabled": true
+    },
+    "component": "CustomSelectDynamic",
+    "onRequest": "fetchDynamicOptions"
+  }
+]
