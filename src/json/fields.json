@@ -69,5 +69,15 @@
     },
     "component": "CustomSelectDynamic",
     "onRequest": "fetchDynamicOptions"
+  },
+  {
+    "fieldData": {
+      "label": "Descripción adicional",
+      "name": "description",
+      "placeholder": "Ingresa una descripción",
+      "enabled": true
+    },
+    "component": "CustomTextArea",
+    "onRequest": "shouldDisplay"
   }
 ]

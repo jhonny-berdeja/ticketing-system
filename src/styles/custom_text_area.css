@@ -1,0 +1,32 @@
+
+.custom-textarea-container {
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en columna */
+    align-items: flex-start; /* Alinea el contenido a la izquierda */
+    margin-bottom: 1rem; /* Espaciado inferior */
+    width: 100%; /* Ocupar todo el ancho disponible */
+  }
+  
+  .custom-textarea-label {
+    font-size: 17px;
+    color: black;
+    margin-bottom: 5px; /* Espaciado entre el label y el textarea */
+    
+  }
+  
+  .custom-textarea {
+    width: 90%; /* Ocupar todo el ancho del contenedor */
+    min-height: 120px; /* Altura mínima para el textarea */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    resize: vertical; /* Permitir redimensionamiento vertical */
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .custom-textarea:focus {
+    border-color: #007bff;
+  }
+  

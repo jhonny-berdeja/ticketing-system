@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../../styles/custom_select_multiple.css";
 
 const CustomSelectMultiple = ({ fieldData, onRequest, onChange }) => {
   const [options, setOptions] = useState([]);
@@ -28,18 +29,20 @@ const CustomSelectMultiple = ({ fieldData, onRequest, onChange }) => {
   };
 
   return (
-    <div>
-      <label htmlFor={fieldData.name}>{fieldData.label}</label>
+    <div className="container">
+      <label className="label" htmlFor={fieldData.name}>
+        {fieldData.label}
+      </label>
       {isLoading ? (
         <p>Cargando opciones...</p>
       ) : (
         <select
+        className="select"
           id={fieldData.name}
           name={fieldData.name}
           multiple
           value={selectedValues}
           onChange={handleSelectionChange}
-          style={{ width: "100%", height: "100px" }}
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>

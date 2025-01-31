@@ -1,0 +1,27 @@
+.form-outline {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1rem; /* Espaciado inferior */
+    width: fit-content;
+  }
+  .form-label {
+    font-size: 17px;
+    color: black; /* Texto negro */
+    margin-right: 10px; /* Espaciado entre label y input */
+    white-space: nowrap;
+  }
+  .form-control {
+    width: 200px; /* Tamaño fijo para mejor diseño */
+    padding: 12px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .form-control:focus {
+    border-color: #007bff;
+  }
+  

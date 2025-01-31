@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../styles/custom_button.css";
 
 const CustomForm = ({ fieldsData, componentMap, requestMethods }) => {
   const [formData, setFormData] = useState(
@@ -54,7 +55,9 @@ const CustomForm = ({ fieldsData, componentMap, requestMethods }) => {
         );
       })}
 
-      <button type="submit">Enviar</button>
+      <button className="btn btn-primary btn-block mb-3" type="submit">
+        Enviar
+      </button>
     </form>
   );
 };

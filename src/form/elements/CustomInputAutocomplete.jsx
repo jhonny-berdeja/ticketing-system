@@ -29,9 +29,13 @@ const CustomInputAutocomplete = ({ fieldData, onRequest, onChange }) => {
   };
 
   return (
-    <div>
-      <label htmlFor={fieldData.name}>{fieldData.label}</label>
+  <>
+    <div className="form-outline">
+      <label className="form-label" htmlFor={fieldData.name}>
+        {fieldData.label}
+      </label>
       <input
+        className="form-control"
         id={fieldData.name}
         name={fieldData.name}
         type="text"
@@ -54,6 +58,7 @@ const CustomInputAutocomplete = ({ fieldData, onRequest, onChange }) => {
         </ul>
       )}
     </div>
+  </>
   );
 };
 

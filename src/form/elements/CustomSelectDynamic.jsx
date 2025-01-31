@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../../styles/custom_select_dynamic.css";
 
 const CustomSelectDynamic = ({ fieldData, onRequest, onChange }) => {
   const [options, setOptions] = useState([]);
@@ -28,12 +29,15 @@ const CustomSelectDynamic = ({ fieldData, onRequest, onChange }) => {
   };
 
   return (
-    <div>
-      <label htmlFor={fieldData.name}>{fieldData.label}</label>
+    <div className="container">
+      <label className="label" htmlFor={fieldData.name}>
+        {fieldData.label}
+      </label>
       {isLoading ? (
         <p>Cargando opciones...</p>
       ) : (
         <select
+        className="select"
           id={fieldData.name}
           name={fieldData.name}
           value={selectedValue}

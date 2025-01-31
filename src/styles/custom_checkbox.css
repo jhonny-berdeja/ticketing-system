@@ -1,0 +1,18 @@
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaciado entre el input y el label */
+    margin-bottom: 1rem;
+  }
+  .form-check-input {
+    width: 18px;
+    height: 18px;
+    accent-color: #007bff; /* Color azul al estar marcado */
+    cursor: pointer;
+  }
+  .form-check-label {
+    font-size: 16px;
+    color: black;
+    cursor: pointer;
+  }
+  

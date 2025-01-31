@@ -6,6 +6,7 @@ import CustomCheckbox from "../form/elements/CustomCheckbox";
 import CustomInputAutocomplete from "../form/elements/CustomInputAutocomplete";
 import CustomSelectMultiple from "../form/elements/CustomSelectMultiple";
 import CustomSelectDynamic from "../form/elements/CustomSelectDynamic";
+import CustomTextArea from "../form/elements/CustomTextArea";
 import fieldsData from "../json/fields.json"; // Importa JSON
 
 const componentMap = {
@@ -15,6 +16,7 @@ const componentMap = {
   CustomInputAutocomplete: CustomInputAutocomplete,
   CustomSelectMultiple: CustomSelectMultiple,
   CustomSelectDynamic: CustomSelectDynamic,
+  CustomTextArea: CustomTextArea,
 };
 
 const Home = () => {
@@ -43,6 +45,11 @@ const Home = () => {
         { value: "option2", label: "Opción 2" },
         { value: "option3", label: "Opción 3" },
       ];
+    },
+    shouldDisplay: async () => {
+      // Ejemplo de una condición que puede devolver 'false' para ocultar el componente
+      const someCondition = true; // Cambia esta condición según tu lógica
+      return someCondition; 
     },
   };
 
