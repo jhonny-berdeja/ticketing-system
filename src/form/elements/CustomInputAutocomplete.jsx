@@ -1,64 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import "../../styles/custom_input_autocomplete.css";
 
 const CustomInputAutocomplete = ({ fieldData, onRequest, onChange }) => {
-  const [options, setOptions] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [isVisible, setIsVisible] = useState(false);
 
-  const handleInputChange = async (e) => {
-    const value = e.target.value;
-    onChange(e.target.name, value); // Llamar a la función onChange para el cambio del valor
+  useEffect(() => {
+    const checkVisibility = async () => {
+      const visible = await onRequest.shouldDisplay();
+      setIsVisible(visible);
+    };
+    checkVisibility();
+  }, [onRequest]);
 
-    if (value.length > 2) {
-      setIsLoading(true);
-      try {
-        const result = await onRequest(value); // Ejecutar la solicitud para autocompletar
-        setOptions(result); // Asumimos que `result` es un array de opciones
-      } catch (error) {
-        console.error("Error al obtener opciones de autocompletar:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    } else {
-      setOptions([]); // Limpiar opciones si el valor es demasiado corto
+  const handleSearch = async (query) => {
+    setSearchTerm(query);
+    if (query.trim() === "") {
+      setSuggestions([]);
+      return;
     }
+    const results = await onRequest.searchUser(query);
+    setSuggestions(results);
   };
 
-  const handleOptionClick = (option) => {
-    onChange(fieldData.name, option.value); // Asignar el valor seleccionado al campo
-    setOptions([]); // Limpiar las opciones después de seleccionar
+  const handleSelect = (value) => {
+    setSearchTerm(value);
+    setSuggestions([]);
+    onChange({ ...fieldData, value: value });
   };
+
+  if (!isVisible) return null;
 
   return (
-  <>
     <div className="form-outline">
       <label className="form-label" htmlFor={fieldData.name}>
         {fieldData.label}
       </label>
       <input
-        className="form-control"
+      className="form-control"
+        type="text"
         id={fieldData.name}
         name={fieldData.name}
-        type="text"
-        value={fieldData.value}
-        placeholder={fieldData.placeholder || ""}
-        onChange={handleInputChange}
+        placeholder={fieldData.placeholder}
+        value={searchTerm}
+        onChange={(e) => handleSearch(e.target.value)}
+        disabled={!fieldData.enabled}
       />
-      {isLoading && <p>Cargando...</p>}
-      {options.length > 0 && (
-        <ul style={{ border: "1px solid #ccc", padding: "5px", marginTop: "5px" }}>
-          {options.map((option, index) => (
-            <li
-              key={index}
-              style={{ padding: "5px", cursor: "pointer" }}
-              onClick={() => handleOptionClick(option)}
-            >
-              {option.label}
+      {suggestions.length > 0 && (
+        <ul>
+          {suggestions.map((user) => (
+            <li key={user.value} onClick={() => handleSelect(user.value)}>
+              {user.label}
             </li>
           ))}
         </ul>
       )}
     </div>
-  </>
   );
 };
 

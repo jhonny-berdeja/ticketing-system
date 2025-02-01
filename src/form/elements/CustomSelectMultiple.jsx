@@ -3,54 +3,63 @@ import "../../styles/custom_select_multiple.css";
 
 const CustomSelectMultiple = ({ fieldData, onRequest, onChange }) => {
   const [options, setOptions] = useState([]);
-  const [selectedValues, setSelectedValues] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [selectedValues, setSelectedValues] = useState(fieldData.value || []); // Usamos un array para seleccionar múltiples valores
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const checkVisibility = async () => {
+      if (onRequest?.shouldDisplay) {
+        const visible = await onRequest.shouldDisplay();
+        setIsVisible(visible);
+      }
+    };
+    checkVisibility();
+  }, [onRequest]);
 
   useEffect(() => {
     const fetchOptions = async () => {
-      setIsLoading(true);
-      try {
-        const result = await onRequest(); // Obtener lista de opciones desde la función proporcionada
-        setOptions(result);
-      } catch (error) {
-        console.error("Error al obtener opciones:", error);
-      } finally {
-        setIsLoading(false);
+      if (onRequest?.fetchOptions) {
+        const data = await onRequest.fetchOptions();
+        setOptions(data);
       }
     };
-
     fetchOptions();
   }, [onRequest]);
 
-  const handleSelectionChange = (event) => {
-    const value = Array.from(event.target.selectedOptions, (option) => option.value);
-    setSelectedValues(value);
-    onChange(fieldData.name, value); // Notificar cambios al formulario
+  const handleChange = (event) => {
+    const selectedOptions = Array.from(event.target.selectedOptions, option => option.value);
+    setSelectedValues(selectedOptions);
+    onChange({ ...fieldData, value: selectedOptions }); // Mandamos los valores seleccionados al onChange
   };
+
+  useEffect(() => {
+    if (fieldData.value !== selectedValues) {
+      setSelectedValues(fieldData.value); // Actualiza el estado si el valor cambia desde el formulario
+    }
+  }, [fieldData.value, selectedValues]);
+
+  if (!isVisible) return null;
 
   return (
     <div className="container">
       <label className="label" htmlFor={fieldData.name}>
         {fieldData.label}
       </label>
-      {isLoading ? (
-        <p>Cargando opciones...</p>
-      ) : (
-        <select
+      <select
         className="select"
-          id={fieldData.name}
-          name={fieldData.name}
-          multiple
-          value={selectedValues}
-          onChange={handleSelectionChange}
-        >
-          {options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      )}
+        id={fieldData.name}
+        name={fieldData.name}
+        value={selectedValues}
+        onChange={handleChange}
+        disabled={!fieldData.enabled}
+        multiple
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };

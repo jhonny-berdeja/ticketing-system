@@ -1,19 +1,33 @@
 [
   {
     "fieldData": {
-      "label": "Apellido",
-      "name": "apellido",
-      "type": "text",
-      "placeholder": "Ingresa tu apellido",
+      "label": "Buscar usuario",
+      "name": "userSearch",
+      "placeholder": "Ingresa el nombre del usuario",
       "enabled": true
     },
-    "component": "CustomInput"
+    "component": "CustomInputAutocomplete"
   },
   {
     "fieldData": {
-      "label": "Nombre",
-      "name": "nombre",
-      "type": "text",
+      "label": "Selecciona una opción",
+      "name": "dynamicSelect",
+      "enabled": true
+    },
+    "component": "CustomSelectDynamic"
+  },
+  {
+    "fieldData": {
+      "label": "Aceptar términos",
+      "name": "acceptTerms",
+      "enabled": true
+    },
+    "component": "CustomCheckbox"
+  },
+  {
+    "fieldData": {
+      "label": "Ingrese su nombre",
+      "name": "userName",
       "placeholder": "Ingresa tu nombre",
       "enabled": true
     },
@@ -21,63 +35,19 @@
   },
   {
     "fieldData": {
-      "label": "Selecciona un rol",
-      "name": "role",
-      "options": [
-        { "value": "", "label": "Seleccione una opción" },
-        { "value": "admin", "label": "Administrador" },
-        { "value": "user", "label": "Usuario" },
-        { "value": "guest", "label": "Invitado" }
-      ],
+      "label": "Selecciona múltiples opciones",
+      "name": "multipleSelect",
       "enabled": true
     },
-    "component": "CustomSelect"
-  },
-  {
-    "fieldData": {
-      "label": "Suscribirse al boletín",
-      "name": "subscribeNewsletter",
-      "value": true,
-      "enabled": true
-    },
-    "component": "CustomCheckbox"
-  },
-  {
-    "fieldData": {
-      "label": "Buscar usuario",
-      "name": "userSearch",
-      "placeholder": "Ingresa el nombre del usuario",
-      "enabled": true
-    },
-    "component": "CustomInputAutocomplete",
-    "onRequest": "searchUser"
-  },
-  {
-    "fieldData": {
-      "label": "Selecciona múltiples roles",
-      "name": "multipleRoles",
-      "enabled": true
-    },
-    "component": "CustomSelectMultiple",
-    "onRequest": "fetchRoles"
-  },
-  {
-    "fieldData": {
-      "label": "Selecciona una opción dinámica",
-      "name": "dynamicSelect",
-      "enabled": true
-    },
-    "component": "CustomSelectDynamic",
-    "onRequest": "fetchDynamicOptions"
+    "component": "CustomSelectMultiple"
   },
   {
     "fieldData": {
       "label": "Descripción adicional",
-      "name": "description",
-      "placeholder": "Ingresa una descripción",
+      "name": "additionalDescription",
+      "placeholder": "Escribe una descripción",
       "enabled": true
     },
-    "component": "CustomTextArea",
-    "onRequest": "shouldDisplay"
+    "component": "CustomTextArea"
   }
 ]

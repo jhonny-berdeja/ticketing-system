@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/custom_text_area.css";
+import "../../styles/custom_text_area.css"
 
 const CustomTextArea = ({ fieldData, onRequest, onChange }) => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
+  // Lógica para comprobar si se debe mostrar el TextArea
   useEffect(() => {
     const checkVisibility = async () => {
-      if (onRequest) {
-        const result = await onRequest();
-        setIsVisible(result);
-      }
+      const visible = await onRequest.shouldDisplay();
+      setIsVisible(visible);
     };
-
     checkVisibility();
   }, [onRequest]);
 
-  if (!isVisible) {
-    return null;
-  }
+  if (!isVisible) return null; // Si no se debe mostrar, no renderizamos el componente
 
   return (
     <div className="custom-textarea-container">
@@ -28,9 +24,9 @@ const CustomTextArea = ({ fieldData, onRequest, onChange }) => {
         className="custom-textarea"
         id={fieldData.name}
         name={fieldData.name}
-        value={fieldData.value}
-        placeholder={fieldData.placeholder || ""}
-        onChange={(e) => onChange(e.target.name, e.target.value)}
+        placeholder={fieldData.placeholder}
+        disabled={!fieldData.enabled}
+        onChange={(e) => onChange({ ...fieldData, value: e.target.value })}
       />
     </div>
   );
