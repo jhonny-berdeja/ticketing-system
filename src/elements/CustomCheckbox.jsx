@@ -1,10 +1,10 @@
 import React from "react";
-import "../../styles/custom_checkbox.css";
+import "../styles/custom_checkbox.css";
 
 const CustomCheckbox = ({ fieldData, onChange }) => {
   const handleChange = (event) => {
     const value = event.target.checked;
-    onChange({ ...fieldData, value }); // Mandamos el valor del checkbox
+    onChange(value);
   };
 
   return (

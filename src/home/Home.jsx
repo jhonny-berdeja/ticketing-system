@@ -119,10 +119,10 @@ const additionalDescriptionMethods = {
 
 // Objeto grande que incluye los métodos definidos afuera
 const requestMethods = {
-  userSearch: userSearchMethods,
-  dynamicSelect: dynamicSelectMethods,
-  multipleSelect: multipleSelectMethods,
-  additionalDescription: additionalDescriptionMethods,
+  mathodsInputAutocomplete: userSearchMethods,
+  mathodsSelectDynamic: dynamicSelectMethods,
+  mathodsSelectMultiple: multipleSelectMethods,
+  mathodsTextArea: additionalDescriptionMethods,
 };
 
 

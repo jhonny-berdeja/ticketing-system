@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/custom_text_area.css"
+import "../styles/custom_text_area.css"
 
 const CustomTextArea = ({ fieldData, onRequest, onChange }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,7 +26,7 @@ const CustomTextArea = ({ fieldData, onRequest, onChange }) => {
         name={fieldData.name}
         placeholder={fieldData.placeholder}
         disabled={!fieldData.enabled}
-        onChange={(e) => onChange({ ...fieldData, value: e.target.value })}
+        onChange={(e) => onChange(e.target.value)}
       />
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/custom_select_dynamic.css";
+import "../styles/custom_select_dynamic.css";
 
 const CustomSelectDynamic = ({ fieldData, onRequest, onChange }) => {
   const [options, setOptions] = useState([]);
@@ -29,7 +29,7 @@ const CustomSelectDynamic = ({ fieldData, onRequest, onChange }) => {
   const handleChange = (event) => {
     const value = event.target.value;
     setSelectedValue(value);
-    onChange({ ...fieldData, value }); // Pasa solo el valor del campo
+    onChange(value); // Pasa solo el valor del campo
   };
 
   useEffect(() => {

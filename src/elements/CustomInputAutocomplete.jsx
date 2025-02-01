@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/custom_input_autocomplete.css";
+import "../styles/custom_input_autocomplete.css";
 
 const CustomInputAutocomplete = ({ fieldData, onRequest, onChange }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -24,11 +24,11 @@ const CustomInputAutocomplete = ({ fieldData, onRequest, onChange }) => {
     setSuggestions(results);
   };
 
-  const handleSelect = (value) => {
+   const handleSelect = (value) => {
     setSearchTerm(value);
     setSuggestions([]);
-    onChange({ ...fieldData, value: value });
-  };
+    onChange(value);
+  }; 
 
   if (!isVisible) return null;
 
@@ -44,17 +44,19 @@ const CustomInputAutocomplete = ({ fieldData, onRequest, onChange }) => {
         name={fieldData.name}
         placeholder={fieldData.placeholder}
         value={searchTerm}
-        onChange={(e) => handleSearch(e.target.value)}
+        onChange={(e) => handleSearch(e.target.value)} 
         disabled={!fieldData.enabled}
       />
       {suggestions.length > 0 && (
-        <ul>
+        <div >
+        <ul >
           {suggestions.map((user) => (
-            <li key={user.value} onClick={() => handleSelect(user.value)}>
+            <li className="form-label" key={user.value} onClick={() => handleSelect(user.value)}>
               {user.label}
             </li>
           ))}
         </ul>
+        </div>
       )}
     </div>
   );

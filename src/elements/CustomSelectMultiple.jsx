@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/custom_select_multiple.css";
+import "../styles/custom_select_multiple.css";
 
 const CustomSelectMultiple = ({ fieldData, onRequest, onChange }) => {
   const [options, setOptions] = useState([]);
@@ -29,7 +29,7 @@ const CustomSelectMultiple = ({ fieldData, onRequest, onChange }) => {
   const handleChange = (event) => {
     const selectedOptions = Array.from(event.target.selectedOptions, option => option.value);
     setSelectedValues(selectedOptions);
-    onChange({ ...fieldData, value: selectedOptions }); // Mandamos los valores seleccionados al onChange
+    onChange(selectedOptions); // Mandamos los valores seleccionados al onChange
   };
 
   useEffect(() => {

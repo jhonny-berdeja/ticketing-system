@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../styles/custom_input.css";
+import "../styles/custom_input.css";
 
 const CustomInput = ({ fieldData, onChange }) => {
   const [inputValue, setInputValue] = useState("");
@@ -7,7 +7,7 @@ const CustomInput = ({ fieldData, onChange }) => {
   const handleChange = (event) => {
     const value = event.target.value;
     setInputValue(value);
-    onChange({ ...fieldData, value }); // Mandamos el valor al onChange
+    onChange(value); // Mandamos el valor al onChange
   };
 
   return (
